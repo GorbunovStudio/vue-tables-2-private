@@ -74,12 +74,6 @@ exports.install = function (Vue, globalOptions, useVuex) {
           if (typeof response === 'undefined') return;
           this.setData(response);
           this.loading = false;
-
-          if (this.hasDateFilters()) {
-            setTimeout(function () {
-              this.initDateFilters();
-            }.bind(this), 0);
-          }
         }.bind(this));
       } else {
         this.loading = false;

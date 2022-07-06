@@ -95,13 +95,8 @@ exports.install = function (Vue, globalOptions, useVuex) {
         this.orderBy.column = this.groupBy[0];
       }
 
-      this.loadState();
-
-      if (this.hasDateFilters()) {
-        this.initDateFilters();
-      } // listen for data being removed
+      this.loadState(); // listen for data being removed
       // and nav to last page if current page is greater than total pages
-
 
       this.$watch('data', function () {
         if (_this.page > _this.totalPages) {
