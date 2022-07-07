@@ -16,6 +16,8 @@ var _VtServerTable = _interopRequireDefault(require("./components/VtServerTable"
 
 var _themes = _interopRequireDefault(require("./themes/themes"));
 
+var _bus = _interopRequireDefault(require("./bus"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
@@ -62,6 +64,8 @@ exports.install = function (Vue, globalOptions, useVuex) {
 
       _created(this);
 
+      _bus["default"].$on('date-filter-changed', this.onDateFilterChanged);
+
       if (!this.vuex) {
         this.query = this.initQuery();
         this.initOrderBy();
@@ -74,12 +78,6 @@ exports.install = function (Vue, globalOptions, useVuex) {
           if (typeof response === 'undefined') return;
           this.setData(response);
           this.loading = false;
-
-          if (this.hasDateFilters()) {
-            setTimeout(function () {
-              this.initDateFilters();
-            }.bind(this), 0);
-          }
         }.bind(this));
       } else {
         this.loading = false;
@@ -96,6 +94,9 @@ exports.install = function (Vue, globalOptions, useVuex) {
       if (this.vuex) return;
       this.registerServerFilters();
       if (this.options.initialPage) this.setPage(this.options.initialPage, true);
+    },
+    beforeDestroy: function beforeDestroy() {
+      _bus["default"].$off('date-filter-changed', this.onDateFilterChanged);
     },
     data: function data() {
       return _merge["default"].recursive(_data(), {
@@ -116,6 +117,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
       registerServerFilters: require("./methods/register-server-filters"),
       getRequestParams: require("./methods/get-request-params"),
       setRequestParams: require("./methods/set-request-params"),
+      onDateFilterChanged: require("./methods/on-date-filter-changed"),
       loadState: function loadState() {
         var _this = this;
 
