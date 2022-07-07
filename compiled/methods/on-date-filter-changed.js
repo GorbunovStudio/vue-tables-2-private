@@ -14,7 +14,7 @@ module.exports = function (_ref) {
   search({
     target: {
       name: this._getColumnName(column),
-      value: query[column]
+      value: this.query[column]
     }
   });
 };
