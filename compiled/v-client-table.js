@@ -71,6 +71,8 @@ exports.install = function (Vue, globalOptions, useVuex) {
 
       this._setFiltersDOM(this.query);
 
+      bus.$on('date-filter-changed', this.onDateFilterChanged);
+
       if (this.opts.resizableColumns) {
         (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst, this.resizableColumns, this.opts.stickyHeader);
       } // this._setColumnsDropdownCloseListener();
@@ -108,6 +110,9 @@ exports.install = function (Vue, globalOptions, useVuex) {
         }
       });
     },
+    beforeDestroy: function beforeDestroy() {
+      bus.$off('date-filter-changed', this.onDateFilterChanged);
+    },
     model: {
       prop: "data"
     },
@@ -141,6 +146,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
       search: require("./methods/client-search"),
       defaultSort: require("./methods/default-sort"),
       getGroupSlot: require("./methods/get-group-slot"),
+      onDateFilterChanged: require("./methods/on-date-filter-changed"),
       toggleGroup: function toggleGroup(group, e) {
         e.stopPropagation();
         var i = this.collapsedGroups.indexOf(group);
