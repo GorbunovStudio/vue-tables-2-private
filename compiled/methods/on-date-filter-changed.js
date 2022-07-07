@@ -10,7 +10,7 @@ module.exports = function (_ref) {
     return _this.source == 'client' ? _this.search(that.data, e) : _this.serverSearch(_this.query, e);
   };
 
-  this.query[column] = "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1, "-").concat(date.getDate(), " 23:59:59");
+  this.query[column] = date ? "".concat(date.getFullYear(), "-").concat(date.getMonth() + 1, "-").concat(date.getDate(), " 23:59:59") : '';
   search({
     target: {
       name: this._getColumnName(column),
