@@ -4,6 +4,8 @@ var _bus = _interopRequireDefault(require("../bus"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var $ = require('jquery');
+
 module.exports = function () {
   var _this = this;
 

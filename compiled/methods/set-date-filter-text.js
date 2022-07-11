@@ -1,5 +1,7 @@
 "use strict";
 
+var $ = require('jquery');
+
 module.exports = function (column, value) {
   var dateFormat = this.dateFormat(column);
   var datepicker = $(this.$el).find("#VueTables__" + $.escapeSelector(column) + "-filter");
