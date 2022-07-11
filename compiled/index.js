@@ -8,9 +8,7 @@ var ClientTable = require('./v-client-table');
 
 var ServerTable = require('./v-server-table');
 
-var jquery = require('jquery');
-
-$ = jquery;
+require('jquery');
 
 var daterangepicker = require('daterangepicker');
 
