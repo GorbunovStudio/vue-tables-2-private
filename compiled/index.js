@@ -8,6 +8,10 @@ var ClientTable = require('./v-client-table');
 
 var ServerTable = require('./v-server-table');
 
+require('jquery');
+
+require('daterangepicker');
+
 module.exports = {
   ClientTable: ClientTable,
   ServerTable: ServerTable,
