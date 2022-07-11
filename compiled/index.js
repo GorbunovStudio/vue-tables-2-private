@@ -12,7 +12,7 @@ require('jquery');
 
 var daterangepicker = require('daterangepicker');
 
-daterangepicker();
+$().daterangepicker = daterangepicker;
 module.exports = {
   ClientTable: ClientTable,
   ServerTable: ServerTable,
