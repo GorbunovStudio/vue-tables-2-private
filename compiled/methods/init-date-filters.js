@@ -4,8 +4,10 @@ var merge = require('merge');
 
 var $ = require('jquery');
 
+var daterangepicker = require('daterangepicker');
+
 module.exports = function () {
-  if (typeof $ === 'undefined' || typeof $(this.$el).daterangepicker === 'undefined') {
+  if (typeof $ === 'undefined') {
     console.error('Date filters require jquery and daterangepicker');
     return;
   }
@@ -57,7 +59,7 @@ module.exports = function () {
       drp.remove();
     }
 
-    el.daterangepicker(merge.recursive(dpOptions, columnOptions, range));
+    daterangepicker(el, merge.recursive(dpOptions, columnOptions, range));
     el.on('apply.daterangepicker', function (ev, picker) {
       query[column] = {
         start: picker.startDate.format('YYYY-MM-DD HH:mm:ss'),
