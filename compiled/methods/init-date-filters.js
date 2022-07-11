@@ -2,6 +2,10 @@
 
 var merge = require('merge');
 
+require('jquery');
+
+require('daterangepicker');
+
 module.exports = function () {
   if (typeof $ === 'undefined' || typeof $(this.$el).daterangepicker === 'undefined') {
     console.error('Date filters require jquery and daterangepicker');
